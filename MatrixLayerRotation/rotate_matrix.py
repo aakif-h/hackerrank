@@ -26,8 +26,8 @@ def matrixRotation(m, r):
     range_numcols = range(numcols)
     range_numloops = range(numloops)
     # list of indices in each CCW loop starting top-right corner
-	# ('0_3', '0_2', '0_1', '0_0', '1_0', '2_0',..., '1_3'),
-	# ('1_2', '1_1', '2_1', '2_2')
+    # ('0_3', '0_2', '0_1', '0_0', '1_0', '2_0',..., '1_3'),
+    # ('1_2', '1_1', '2_1', '2_2')
 
     def get_loop_indices(loop=-1):
         global loop_indices, len_loop_indices
@@ -72,8 +72,7 @@ def matrixRotation(m, r):
 
 
 
-    def turn(loop, i, j):  # return new location after the CCW turn
-        ij = "{:d}_{:d}".format(i, j)
+    def turn(loop, ij):  # return new location after the CCW turn
         l = len_loop_indices[loop]
         k = loop_indices[loop].index(ij)    # index of ij in loop list
         m = k + turns                       # new position after turns
@@ -123,11 +122,10 @@ def matrixRotation(m, r):
         print_matrix(matrix)
         print "-------------------"
     for loop in range_numloops:
-        for i in range_numrows:
-            for j in range_numcols:
-                if is_off_loop(loop, i, j): continue
-                i1, j1 = turn(loop, i, j)
-                matrix1[i1][j1] = matrix[i][j]
+        for ij in loop_indices[loop]:
+            i1, j1 = turn(loop, ij)
+            i,j = map(int, ij.split('_'))
+            matrix1[i1][j1] = matrix[i][j]
     print_matrix(matrix1)
 
 if __name__ == '__main__':
