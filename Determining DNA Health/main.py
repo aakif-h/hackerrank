@@ -19,7 +19,7 @@ def num_occurrences(string, substring):
             break
     return count
 
-def determineHealths(genes, health, dna):
+def determineHealth(genes, health, dna):
     total_health = 0
     for i in range(len(genes)):
         total_health += num_occurrences(dna, genes[i])*health[i]
@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
         d = firstLastd[2]
 
-        result = determineHealths(genes[first:last+1], health[first:last+1], d)
+        result = determineHealth(genes[first:last+1], health[first:last+1], d)
         health_list.append(result)
     
     health_list.sort()
