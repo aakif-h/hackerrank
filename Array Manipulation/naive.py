@@ -1,3 +1,9 @@
+import os
+import random
+import re
+import sys
+
+# Complete the arrayManipulation function below.
 def arrayManipulation(n, queries):
     arr = [0] * (n + 1)
     for query in queries:
